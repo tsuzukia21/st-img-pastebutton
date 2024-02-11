@@ -7,7 +7,7 @@ long_description = (this_directory / "README.md").read_text()
 
 setuptools.setup(
     name="st_img_pastebutton",
-    version="0.0.2",
+    version="0.0.3",
     author="tsuzukia",
     author_email="",
     description="Streamlit component that allows you to create button to paste image from clipboard.",

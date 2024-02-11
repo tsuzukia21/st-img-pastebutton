@@ -1,14 +1,15 @@
 {
-  "name": "my_component",
-  "version": "0.1.0",
+  "name": "st_img_pastebutton",
+  "version": "0.0.3",
   "private": true,
   "dependencies": {
-    "baseui": "^14.0.0",
+    "baseui": "^12.2.0",
+    "lodash": "^4.17.15",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "streamlit-component-lib": "^2.0.0",
-    "styletron-engine-atomic": "^1.6.2",
-    "styletron-react": "^6.1.1"
+    "styletron-engine-atomic": "^1.5.0",
+    "styletron-react": "^6.1.0"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -34,10 +35,11 @@
   "homepage": ".",
   "devDependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
-    "@types/node": "^20.10.7",
-    "@types/react": "^18.2.47",
-    "@types/react-dom": "^18.2.18",
+    "@types/lodash": "^4.14.150",
+    "@types/node": "^12.0.0",
+    "@types/react": "^16.9.0",
+    "@types/react-dom": "^16.9.0",
     "react-scripts": "^5.0.1",
-    "typescript": "^5.3.3"
+    "typescript": "^4.2.0"
   }
 }

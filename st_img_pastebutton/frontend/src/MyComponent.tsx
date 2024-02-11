@@ -18,7 +18,6 @@ class ImageClipboardComponent extends StreamlitComponentBase<State> {
       const clipboardItems = await navigator.clipboard.read();
       let imageFound = false;
       for (const clipboardItem of clipboardItems) {
-        // Check for common image formats
         const imageType = clipboardItem.types.find(type => type.startsWith("image/"));
         if (imageType) {
           const blob = await clipboardItem.getType(imageType);
@@ -39,40 +38,39 @@ class ImageClipboardComponent extends StreamlitComponentBase<State> {
       }
     } catch (err) {
       if (err instanceof DOMException && err.name === "NotAllowedError") {
-        // Ignore the error if it's a user cancellation or permission denial
         console.log("Clipboard access denied or cancelled by the user.");
       } else if (err instanceof Error) {
-        // If it's an Error instance, we can get a detailed error message
         this.setState({ error: "Failed to read the image. Details: " + err.message });
         console.error("Failed to read clipboard contents: ", err.message);
       } else {
-        // If it's not an Error instance, display a generic error message
         this.setState({ error: "Failed to read the image." });
         console.error("Failed to read clipboard contents");
       }
     }
   };
 
-  public render = (): React.ReactNode => {
+  public render = (): React.ReactNode => {  
+    const label = String(this.props.args["label"])
     const { error } = this.state;
 
-    // Style definition resembling Streamlit's default button style
     const buttonStyle = {
-      backgroundColor: "#ffffff", // background color (white)
-      color: "black", // text color (black)
-      padding: "9px 12px",
-      border: "1px solid #cccccc", // border color (grey)
-      borderRadius: "8px", // rounded corners
+      backgroundColor: "#ffffff",
+      color: "black",
+      padding: "5px 10px",
+      border: "1px solid #cccccc",
+      borderRadius: "8px",
       cursor: "pointer",
       fontSize: "14px",
-      outline: "none", // disable outline on focus
-      transition: "color 0.3s, border-color 0.3s", // add transition for color and border color
+      outline: "none",
+      transition: "color 0.3s, border-color 0.3s",
+      display: "inline-block",
+      height: "40px",
+      lineHeight: "27px",
     };
 
-    // Hover style
     const buttonHoverStyle = {
-      color: "red", // text color on hover (red)
-      borderColor: "red", // border color on hover (red)
+      color: "red",
+      borderColor: "red",
     };
 
     return (
@@ -87,7 +85,7 @@ class ImageClipboardComponent extends StreamlitComponentBase<State> {
             Object.assign(e.currentTarget.style, buttonStyle);
           }}
         >
-          Paste from Clipboard
+          <label>{label}</label>
         </button>
         {error && <div style={{ color: "red" }}>{error}</div>}
       </div>

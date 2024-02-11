@@ -12,6 +12,13 @@ confirmed that it works with chrome,safari,edge. it doesn't work with firefox
 pip install st_img_pastebutton
 ```
 
+or
+
+```sh
+pip install st_img_pastebutton --upgrade
+```
+
+
 ## Usage instructions
 
 ```python
@@ -23,7 +30,7 @@ import base64
 st.header("Image Clipboard Example")
 st.write("Click the button below to upload an image from your clipboard.")
 
-image_data = paste(key="image_clipboard")
+image_data = paste(label="paste from clipboard",key="image_clipboard")
 
 if image_data is not None:
     header, encoded = image_data.split(",", 1)

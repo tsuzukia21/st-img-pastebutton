@@ -1,0 +1,59 @@
+Metadata-Version: 2.1
+Name: st-img-pastebutton
+Version: 0.0.3
+Summary: Streamlit component that allows you to create button to paste image from clipboard.
+Home-page: 
+Author: tsuzukia
+Author-email: 
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: streamlit>=0.63
+Provides-Extra: devel
+Requires-Dist: wheel; extra == "devel"
+Requires-Dist: pytest==7.4.0; extra == "devel"
+Requires-Dist: playwright==1.39.0; extra == "devel"
+Requires-Dist: requests==2.31.0; extra == "devel"
+Requires-Dist: pytest-playwright-snapshot==1.0; extra == "devel"
+Requires-Dist: pytest-rerunfailures==12.0; extra == "devel"
+
+# streamlit-custom-component
+
+Streamlit component that allows you to create button to paste image from clipboard.
+
+![Videotogif (21)](https://github.com/tsuzukia21/st-img-pastebutton/assets/132349459/cf3f9564-2fdf-4aef-a2dc-15b75be1f55b)
+
+confirmed that it works with chrome,safari,edge. it doesn't work with firefox
+
+## Installation instructions
+
+```sh
+pip install st_img_pastebutton
+```
+
+## Usage instructions
+
+```python
+import streamlit as st
+from st_img_pastebutton import paste
+from io import BytesIO
+import base64
+
+st.header("Image Clipboard Example")
+st.write("Click the button below to upload an image from your clipboard.")
+
+image_data = paste(label="paste from clipboard",key="image_clipboard")
+
+if image_data is not None:
+    header, encoded = image_data.split(",", 1)
+    binary_data = base64.b64decode(encoded)
+    bytes_data = BytesIO(binary_data)
+    st.image(bytes_data, caption="Uploaded Image", use_column_width=True)
+else:
+    st.write("No image uploaded yet.")
+```
+
+run
+```python
+streamlt run examle.py
+```
