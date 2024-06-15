@@ -3,6 +3,7 @@ import {
   Streamlit,
   StreamlitComponentBase,
   withStreamlitConnection,
+  Theme,
 } from "streamlit-component-lib";
 
 interface State {
@@ -49,15 +50,16 @@ class ImageClipboardComponent extends StreamlitComponentBase<State> {
     }
   };
 
-  public render = (): React.ReactNode => {  
+  public render = (): React.ReactNode => {
     const label = String(this.props.args["label"])
     const { error } = this.state;
+    const theme: Theme | undefined = this.props.theme;
 
     const buttonStyle = {
-      backgroundColor: "#ffffff",
-      color: "black",
+      backgroundColor: "transparent",
+      color: theme.textColor,
       padding: "5px 10px",
-      border: "1px solid #cccccc",
+      border: `1px solid ${theme.secondaryBackgroundColor}`,
       borderRadius: "8px",
       cursor: "pointer",
       fontSize: "14px",
@@ -69,8 +71,8 @@ class ImageClipboardComponent extends StreamlitComponentBase<State> {
     };
 
     const buttonHoverStyle = {
-      color: "red",
-      borderColor: "red",
+      color: theme.primaryColor,
+      borderColor: theme.primaryColor,
     };
 
     return (
@@ -90,7 +92,7 @@ class ImageClipboardComponent extends StreamlitComponentBase<State> {
         {error && <div style={{ color: "red" }}>{error}</div>}
       </div>
     );
-  };  
+  };
 }
 
 export default withStreamlitConnection(ImageClipboardComponent);
