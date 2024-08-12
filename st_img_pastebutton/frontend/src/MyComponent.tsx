@@ -59,7 +59,7 @@ class ImageClipboardComponent extends StreamlitComponentBase<State> {
       backgroundColor: "transparent",
       color: theme.textColor,
       padding: "5px 10px",
-      border: `1px solid ${theme.secondaryBackgroundColor}`,
+      border: `1px solid ${theme.textColor}40`,
       borderRadius: "8px",
       cursor: "pointer",
       fontSize: "14px",
